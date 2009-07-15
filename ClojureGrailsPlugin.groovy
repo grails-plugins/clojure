@@ -11,11 +11,11 @@ class ClojureGrailsPlugin {
     ]
 
     // TODO Fill in these fields
-    def author = "Your name"
-    def authorEmail = ""
-    def title = "Plugin summary/headline"
+    def author = "Jeff Brown"
+    def authorEmail = "jeff.brown@springsource.com"
+    def title = "Grails Clojure Plugin"
     def description = '''\\
-Brief description of the plugin.
+The Clojure plugin adds support for easily accessing Clojure code in a Grails application.
 '''
 
     // URL to the plugin's documentation
