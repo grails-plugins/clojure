@@ -11,7 +11,7 @@ class ClojureProxy {
     }
     
     def methodMissing(String name, args) {
-        def impl = { a = [] ->
+        def impl = { Object[] a = new Object[0] ->
             def var = RT.var(delegate.ns, name)
             var.invoke (*a)
         }
