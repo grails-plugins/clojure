@@ -53,5 +53,8 @@ The Clojure plugin adds support for easily accessing Clojure code in a Grails ap
     }
 
     def onChange = { event ->
+        event.source.file.withReader { reader ->
+            Compiler.load reader
+        }
     }
 }
