@@ -3,12 +3,15 @@ package grails.clojure
 import clojure.lang.RT
 
 class ClojureProxy {
+    
+    def ns = 'grails'
+    
+    def getAt(String ns) {
+        return new ClojureProxy(ns: ns)
+    }
+    
     def methodMissing(String name, args) {
-        def impl = {
-            def var = RT.var('grails', name)
-            var.invoke (*args)
-        }
-        this.metaClass."${name}" = impl
-        impl(args)
+        def var = RT.var(ns, name)
+        var.invoke (*args)
     }
 }
