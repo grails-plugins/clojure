@@ -1,3 +1,5 @@
+import clojure.lang.Compiler
+
 class ClojureGrailsPlugin {
     // the plugin version
     def version = "0.1-SNAPSHOT"
@@ -7,9 +9,13 @@ class ClojureGrailsPlugin {
     def dependsOn = [:]
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
-            "grails-app/views/error.gsp"
+            "grails-app/views/error.gsp",
+            "grails-app/clj/*",
+            "grails-app/controllers/*"
     ]
-
+    
+    def watchedResources = "file:./grails-app/clj/*.clj"
+    
     // TODO Fill in these fields
     def author = "Jeff Brown"
     def authorEmail = "jeff.brown@springsource.com"
@@ -21,30 +27,31 @@ The Clojure plugin adds support for easily accessing Clojure code in a Grails ap
     // URL to the plugin's documentation
     def documentation = "http://grails.org/Clojure+Plugin"
 
-    def doWithSpring = {
-        // TODO Implement runtime spring config (optional)
-    }
-
-    def doWithApplicationContext = { applicationContext ->
-        // TODO Implement post initialization spring config (optional)
-    }
-
-    def doWithWebDescriptor = { xml ->
-        // TODO Implement additions to web.xml (optional)
-    }
-
     def doWithDynamicMethods = { ctx ->
-        // TODO Implement registering dynamic methods to classes (optional)
+        def clojureFiles
+        if(application.warDeployed) {
+            clojureFiles = parentCtx?.getResources("**/WEB-INF/grails-app/clj/*.clj")?.toList()
+        } else {
+            clojureFiles = plugin.watchedResources
+        }
+        clojureFiles.each {
+            it.file.withReader { reader ->
+                Compiler.load reader
+            }
+        }
+        def config = org.codehaus.groovy.grails.commons.ConfigurationHolder.config
+        def clojurePropertyName = config.grails?.clojure?.dynamicPropertyName
+        if(clojurePropertyName) {
+            clojurePropertyName = clojurePropertyName[0].toUpperCase() + clojurePropertyName[1..-1]
+        } else {
+            clojurePropertyName = 'Clj'
+        }
+        def proxy = new grails.clojure.ClojureProxy()
+        application.allClasses*.metaClass*."get${clojurePropertyName}" = {
+            return proxy
+        }
     }
 
     def onChange = { event ->
-        // TODO Implement code that is executed when any artefact that this plugin is
-        // watching is modified and reloaded. The event contains: event.source,
-        // event.application, event.manager, event.ctx, and event.plugin.
-    }
-
-    def onConfigChange = { event ->
-        // TODO Implement code that is executed when the project configuration changes.
-        // The event is the same as for 'onChange'.
     }
 }
