@@ -13,6 +13,14 @@ class ClojureProxyTests extends GroovyTestCase {
         assertEquals 'wrong number of elements in result', 5, results.size()
     }
     
+    void testClojureFunctionWithMultipleArguments() {
+        def proxy = new ClojureProxy()
+        
+        assertEquals 10, proxy.add_numbers(3, 2, 5)
+        assertEquals 10, proxy.add_numbers(6, 4)
+        assertEquals 10, proxy.add_numbers(1, 2, 3, 4)
+    }
+    
     void testNamespaces() {
         def proxy = new ClojureProxy()
         
