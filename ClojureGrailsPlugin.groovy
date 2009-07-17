@@ -16,6 +16,8 @@ class ClojureGrailsPlugin {
     
     def watchedResources = "file:./grails-app/clj/*.clj"
     
+    def observe = ['*']
+    
     // TODO Fill in these fields
     def author = "Jeff Brown"
     def authorEmail = "jeff.brown@springsource.com"
@@ -28,17 +30,20 @@ The Clojure plugin adds support for easily accessing Clojure code in a Grails ap
     def documentation = "http://grails.org/Clojure+Plugin"
 
     def doWithDynamicMethods = { ctx ->
-        def clojureFiles
-        if(application.warDeployed) {
-            clojureFiles = parentCtx?.getResources("**/WEB-INF/grails-app/clj/*.clj")?.toList()
-        } else {
-            clojureFiles = plugin.watchedResources
-        }
-        clojureFiles.each {
-            it.file.withReader { reader ->
-                Compiler.load reader
+        def clojureFiles = new File("./grails-app/clj/")
+        clojureFiles.eachFileRecurse {
+            if(it.name.endsWith('.clj')) {
+                it.withReader { reader ->
+                    Compiler.load reader
+                }
             }
         }
+        application.allClasses.each {
+            addDynamicProperty(it)
+        }
+    }
+
+    private void addDynamicProperty(clazz) {
         def config = org.codehaus.groovy.grails.commons.ConfigurationHolder.config
         def clojurePropertyName = config.grails?.clojure?.dynamicPropertyName
         if(clojurePropertyName) {
@@ -47,14 +52,20 @@ The Clojure plugin adds support for easily accessing Clojure code in a Grails ap
             clojurePropertyName = 'Clj'
         }
         def proxy = new grails.clojure.ClojureProxy()
-        application.allClasses*.metaClass*."get${clojurePropertyName}" = {
+        clazz.metaClass*."get${clojurePropertyName}" = {
             return proxy
         }
     }
 
     def onChange = { event ->
-        event.source.file.withReader { reader ->
-            Compiler.load reader
+        def source = event.source
+        if(source instanceof org.springframework.core.io.FileSystemResource &&
+            (source.file.name.endsWith('.clj'))) {
+                source.file.withReader { reader ->
+                    Compiler.load reader
+                }
+        } else if(source instanceof Class) {
+            addDynamicProperty(source)
         }
     }
 }
