@@ -10,7 +10,7 @@ class ClojureGrailsPlugin {
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
             "grails-app/views/error.gsp",
-            "grails-app/clj/*",
+            "src/clj/*",
             "grails-app/controllers/*"
     ]
     
