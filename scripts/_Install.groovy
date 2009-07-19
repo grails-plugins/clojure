@@ -1,1 +1,1 @@
-ant.mkdir dir: "${basedir}/grails-app/clj"
+ant.mkdir dir: "${basedir}/src/clj"

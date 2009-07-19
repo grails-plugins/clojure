@@ -14,7 +14,7 @@ class ClojureGrailsPlugin {
             "grails-app/controllers/*"
     ]
     
-    def watchedResources = "file:./grails-app/clj/*.clj"
+    def watchedResources = "file:./src/clj/*.clj"
     
     def observe = ['*']
     
@@ -32,7 +32,7 @@ The Clojure plugin adds support for easily accessing Clojure code in a Grails ap
     def doWithDynamicMethods = { ctx ->
         def clojureFiles
         if(application.warDeployed) {
-            clojureFiles = parentCtx?.getResources("**/WEB-INF/grails-app/clj/*.clj")?.toList()
+            clojureFiles = parentCtx?.getResources("**/WEB-INF/clj/*.clj")?.toList()
         } else {
             clojureFiles = plugin.watchedResources
         }
