@@ -30,12 +30,10 @@ The Clojure plugin adds support for easily accessing Clojure code in a Grails ap
     def documentation = "http://grails.org/Clojure+Plugin"
 
     def doWithDynamicMethods = { ctx ->
-        def clojureFiles = new File("./grails-app/clj/")
-        clojureFiles.eachFileRecurse {
-            if(it.name.endsWith('.clj')) {
-                it.withReader { reader ->
-                    Compiler.load reader
-                }
+        def clojureFiles = plugin.watchedResources
+        clojureFiles.each {
+            it.file.withReader { reader ->
+                Compiler.load reader
             }
         }
         application.allClasses.each {
