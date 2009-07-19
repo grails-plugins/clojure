@@ -41,12 +41,10 @@ The Clojure plugin adds support for easily accessing Clojure code in a Grails ap
                 Compiler.load reader
             }
         }
-        application.allClasses.each {
-            addDynamicProperty(it)
-        }
+        addDynamicProperty(application.allClasses)
     }
 
-    private void addDynamicProperty(clazz) {
+    private void addDynamicProperty(classes) {
         def config = org.codehaus.groovy.grails.commons.ConfigurationHolder.config
         def clojurePropertyName = config.grails?.clojure?.dynamicPropertyName
         if(clojurePropertyName) {
@@ -55,7 +53,7 @@ The Clojure plugin adds support for easily accessing Clojure code in a Grails ap
             clojurePropertyName = 'Clj'
         }
         def proxy = new grails.clojure.ClojureProxy()
-        clazz.metaClass*."get${clojurePropertyName}" = {
+        classes*.metaClass*."get${clojurePropertyName}" = {
             return proxy
         }
     }
@@ -68,7 +66,7 @@ The Clojure plugin adds support for easily accessing Clojure code in a Grails ap
                     Compiler.load reader
                 }
         } else if(source instanceof Class) {
-            addDynamicProperty(source)
+            addDynamicProperty([source])
         }
     }
 }
