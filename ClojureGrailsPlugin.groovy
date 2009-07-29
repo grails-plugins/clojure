@@ -11,7 +11,9 @@ class ClojureGrailsPlugin {
     def pluginExcludes = [
             "grails-app/views/error.gsp",
             "src/clj/*",
-            "grails-app/controllers/*"
+            "grails-app/controllers/*",
+            "**/.gitignore",
+            "grails-app/views/demo/*"
     ]
     
     def watchedResources = "file:./src/clj/*.clj"
