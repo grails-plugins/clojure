@@ -12,3 +12,9 @@
 (def fifteen 15)
 
 (def test_string "test string")
+
+(defn execute_closure [closure a b]
+    (closure a b))
+
+(defn read_map [test-map key]
+    (test-map key))
