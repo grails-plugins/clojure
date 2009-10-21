@@ -8,3 +8,7 @@
     
 (defn add_numbers ([x] x) 
     ([x & rest-args] (reduce + (cons x rest-args))))
+
+(def fifteen 15)
+
+(def test_string "test string")

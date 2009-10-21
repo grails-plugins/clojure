@@ -9,7 +9,11 @@ class ClojureProxy {
     def getAt(String ns) {
         return new ClojureProxy(ns: ns)
     }
-    
+
+    def propertyMissing(String name) {
+		RT.var(ns, name)?.get()
+	}
+
     def methodMissing(String name, args) {
         def impl = { Object[] a = new Object[0] ->
             def var = RT.var(delegate.ns, name)

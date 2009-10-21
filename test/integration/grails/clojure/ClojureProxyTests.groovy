@@ -21,6 +21,14 @@ class ClojureProxyTests extends GroovyTestCase {
         assertEquals 10, proxy.add_numbers(1, 2, 3, 4)
     }
     
+    void testClojureBinding() {
+      	def proxy = new ClojureProxy()
+
+      	assertEquals 15, proxy.fifteen
+      	assertEquals "test string", proxy.test_string
+      	shouldFail { proxy.blah }
+    }
+
     void testNamespaces() {
         def proxy = new ClojureProxy()
         
