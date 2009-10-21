@@ -28,7 +28,7 @@ class ClojureProxyTests extends GroovyTestCase {
         def args = [7, 3]
         assertEquals testClosure(*args), proxy.execute_closure(testClosure, *args)
 
-        shouldFail { proxy.execute_closure({ it } *args) }
+        shouldFail { proxy.execute_closure({ it }, *args) }
     }
 
     void testConvertArgs() {
