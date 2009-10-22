@@ -43,14 +43,16 @@ class ClojureProxyTests extends GroovyTestCase {
 
         def testMap = [third: 'groovy', second: 'grails', first: 'clojure']
         assertEquals 'clojure', proxy.read_map(testMap, 'first')
+        // test cacheing w/ conversion
+        assertEquals 'clojure', proxy.read_map(testMap, 'first')
     }
 
     void testClojureBinding() {
-      	def proxy = new ClojureProxy()
+          def proxy = new ClojureProxy()
 
-      	assertEquals 15, proxy.fifteen
-      	assertEquals "test string", proxy.test_string
-      	shouldFail { proxy.blah }
+          assertEquals 15, proxy.fifteen
+          assertEquals "test string", proxy.test_string
+          shouldFail { proxy.blah }
     }
 
     void testNamespaces() {

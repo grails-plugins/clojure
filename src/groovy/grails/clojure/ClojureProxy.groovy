@@ -25,16 +25,16 @@ class ClojureProxy {
     def convertArgs(args) {
         args.collect {
             convertArg(it)
-        }
+        } as Object[]
     }
     
     def methodMissing(String name, args) {
         def impl = { Object[] a = new Object[0] ->
             def var = RT.var(delegate.ns, name)
-            var.invoke (*a)
+            var.invoke (*convertArgs(a))
         }
         ClojureProxy.metaClass."${name}" = impl
-        impl(convertArgs(args) as Object[])
+        impl(args)
     }
 
     def propertyMissing(String name) {
