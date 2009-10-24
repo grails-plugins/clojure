@@ -11,6 +11,8 @@
 
 (def fifteen 15)
 
+(def x 42)
+
 (def test_string "test string")
 
 (defn execute_closure [closure a b]

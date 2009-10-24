@@ -39,8 +39,11 @@ class ClojureProxy {
 
     def propertyMissing(String name) {
         def impl = { -> RT.var(ns, name)?.get() }
-        name.metaClass.capitalize = { delegate[0].toUpperCase() + delegate[1..-1] }
-        ClojureProxy.metaClass."get${name.capitalize()}" = impl
+        def getterName = "get${name[0].toUpperCase()}"
+        if(name.size() > 1) {
+            getterName += name[1..-1]
+        }
+        ClojureProxy.metaClass."${getterName}" = impl
         impl()
     }
 }

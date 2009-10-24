@@ -55,6 +55,12 @@ class ClojureProxyTests extends GroovyTestCase {
           shouldFail { proxy.blah }
     }
 
+    void testClojureBindingWithSingleChararacterName() {
+          def proxy = new ClojureProxy()
+
+          assertEquals 42, proxy.x
+    }
+
     void testNamespaces() {
         def proxy = new ClojureProxy()
         
