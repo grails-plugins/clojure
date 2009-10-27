@@ -74,4 +74,28 @@ class ClojureProxyTests extends GroovyTestCase {
         assertEquals "one::doit", proxy['one'].doit()
         assertEquals "two::doit", proxy['two'].doit()
     }
+
+    void testMacro() {
+        def proxy = new ClojureProxy()
+
+        assertEquals 42, proxy.silly_adder(42)
+    }
+
+    void testSimpleMacro() {
+        def proxy = new ClojureProxy()
+
+        assertEquals 42, proxy.simple_macro()
+    }
+
+    void testEmptyMacro() {
+        def proxy = new ClojureProxy()
+
+        assertEquals 0, proxy.empty_macro().size()
+    }
+
+    void testListMacro() {
+        def proxy = new ClojureProxy()
+
+        assertEquals 4, proxy.list_macro().size()
+    }
 }

@@ -20,3 +20,13 @@
 
 (defn read_map [test-map key]
     (test-map key))
+
+(defmacro silly_adder [sum]
+    (let [addend# (for [i (range sum)] 1)]
+       `(add_numbers ~@addend#)))
+
+(defmacro simple_macro [] 42)
+
+(defmacro empty_macro [] ())
+
+(defmacro list_macro [] `[1 2 3 4])
