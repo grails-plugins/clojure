@@ -30,3 +30,7 @@
 (defmacro empty_macro [] ())
 
 (defmacro list_macro [] `[1 2 3 4])
+
+(defmacro even_sillier_adder [sum]
+    `(silly_adder ~(+ sum 5)))
+
