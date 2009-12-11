@@ -1,3 +1,5 @@
+grails-clojure-*.zip
+plugin.xml
 web-app/plugins
 stacktrace.log
 target
