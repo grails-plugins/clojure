@@ -119,12 +119,10 @@ class ClojureProxyTests extends GroovyTestCase {
 
   void testRecursiveMacroFail() {
       def proxy = new ClojureProxy()
-      try {
+      def msg = shouldFail(Exception) {
           proxy.recursive_macro(4)
-          assert false
-      } catch(e) {
-          assert "Macro recursion exceeded maxMacroDepth of 25" == e.message
       }
+      assertEquals 'Macro recursion exceeded maxMacroDepth of 25', msg
     }
 
 }
