@@ -2,6 +2,12 @@ package grails.clojure
 
 class ClojureProxyTests extends GroovyTestCase {
     static transactional = false
+
+    void setUp() {
+      grails.clojure.ClojureProxy.metaClass.static."getMaxMacroDepth" = {
+        25
+      }
+    }
     
     void testASimpleClojureFunction() {
         assertEquals 'A Simple Clojure Function', new ClojureProxy().simple()
@@ -98,12 +104,27 @@ class ClojureProxyTests extends GroovyTestCase {
 
         assertEquals 4, proxy.list_macro().size()
     }
-// TODO fix this...
-/*
+
     void testListMacroMacro() {
         def proxy = new ClojureProxy()
 
         assertEquals 9, proxy.even_sillier_adder(4)
     }
-    */
+
+    void testListMacroMacroMacro() {
+        def proxy = new ClojureProxy()
+
+        assertEquals 12, proxy.ridiculously_silly_adder(4)
+    }
+
+  void testRecursiveMacroFail() {
+      def proxy = new ClojureProxy()
+      try {
+          proxy.recursive_macro(4)
+          assert false
+      } catch(e) {
+          assert "Macro recursion exceeded maxMacroDepth of 25" == e.message
+      }
+    }
+
 }

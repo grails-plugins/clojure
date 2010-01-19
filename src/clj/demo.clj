@@ -32,5 +32,10 @@
 (defmacro list_macro [] `[1 2 3 4])
 
 (defmacro even_sillier_adder [sum]
-    `(silly_adder ~(+ sum 5)))
+   `(silly_adder ~(+ sum 5)))
 
+(defmacro ridiculously_silly_adder [sum]
+  `(even_sillier_adder ~(+ sum 3)))
+
+(defmacro recursive_macro [parameter]
+  `(recursive_macro ~parameter))

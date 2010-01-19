@@ -48,12 +48,21 @@ class ClojureProxy {
         def impl  = { Object[] a = new Object[0] ->
                 def var = RT.var(delegate.ns, name)
                 def res = var.invoke (*convertArgs(a))
-                if (var.isMacro() 
+                def depthCounter = 0
+                while (var.isMacro() 
                     && res instanceof clojure.lang.ISeq
-                    && res.size() > 0)
+                    && res.size() > 0
+                       && depthCounter < ClojureProxy.getMaxMacroDepth())
                 {
-                    clojure.lang.Var.find(res.first()).invoke(*res.more())
-                } else { res }
+                  var = clojure.lang.Var.find(res.first())
+                  res = var.invoke(*res.more())
+                  depthCounter++
+                }
+
+                if (depthCounter >= ClojureProxy.getMaxMacroDepth()) {
+                    throw new Exception("Macro recursion exceeded maxMacroDepth of ${ClojureProxy.getMaxMacroDepth()}")
+                }
+                res
             }
         ClojureProxy.metaClass."${name}" = impl
         impl(args)
