@@ -46,24 +46,13 @@ class ClojureProxy {
     
     def methodMissing(String name, args) {
         def impl  = { Object[] a = new Object[0] ->
-                def var = RT.var(delegate.ns, name)
-                def res = var.invoke (*convertArgs(a))
-                def depthCounter = 0
-                while (var.isMacro() 
-                    && res instanceof clojure.lang.ISeq
-                    && res.size() > 0
-                       && depthCounter < ClojureProxy.getMaxMacroDepth())
-                {
-                  var = clojure.lang.Var.find(res.first())
-                  res = var.invoke(*res.more())
-                  depthCounter++
-                }
-
-                if (depthCounter >= ClojureProxy.getMaxMacroDepth()) {
-                    throw new Exception("Macro recursion exceeded maxMacroDepth of ${ClojureProxy.getMaxMacroDepth()}")
-                }
-                res
+            def var = RT.var(delegate.ns, name)
+            if(var.isMacro()) {
+                throw new UnsupportedOperationException("Directly Invoking Macros Is Not Supported. (namespace: ${delegate.ns}, macro: ${name})")
             }
+            def res = var.invoke (*convertArgs(a))
+            res
+        }
         ClojureProxy.metaClass."${name}" = impl
         impl(args)
     }

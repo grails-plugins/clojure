@@ -84,45 +84,54 @@ class ClojureProxyTests extends GroovyTestCase {
     void testMacro() {
         def proxy = new ClojureProxy()
 
-        assertEquals 42, proxy.silly_adder(42)
+        def msg = shouldFail(UnsupportedOperationException) {
+            proxy.silly_adder(42)
+        }
+        
+        assertEquals "Directly Invoking Macros Is Not Supported. (namespace: grails, macro: silly_adder)", msg
     }
 
     void testSimpleMacro() {
         def proxy = new ClojureProxy()
 
-        assertEquals 42, proxy.simple_macro()
+        def msg = shouldFail(UnsupportedOperationException) {
+            proxy.simple_macro()
+        }
+        assertEquals "Directly Invoking Macros Is Not Supported. (namespace: grails, macro: simple_macro)", msg
     }
 
     void testEmptyMacro() {
         def proxy = new ClojureProxy()
 
-        assertEquals 0, proxy.empty_macro().size()
+        def msg = shouldFail(UnsupportedOperationException) {
+            proxy.empty_macro().size()
+        }
+        assertEquals "Directly Invoking Macros Is Not Supported. (namespace: grails, macro: empty_macro)", msg
     }
 
     void testListMacro() {
         def proxy = new ClojureProxy()
 
-        assertEquals 4, proxy.list_macro().size()
+        def msg = shouldFail(UnsupportedOperationException) {
+            proxy.list_macro().size()
+        }
+        assertEquals "Directly Invoking Macros Is Not Supported. (namespace: grails, macro: list_macro)", msg
     }
 
     void testListMacroMacro() {
         def proxy = new ClojureProxy()
-
-        assertEquals 9, proxy.even_sillier_adder(4)
+        def msg = shouldFail(UnsupportedOperationException) {
+            proxy.even_sillier_adder(4)
+        }
+        assertEquals "Directly Invoking Macros Is Not Supported. (namespace: grails, macro: even_sillier_adder)", msg
     }
 
     void testListMacroMacroMacro() {
         def proxy = new ClojureProxy()
 
-        assertEquals 12, proxy.ridiculously_silly_adder(4)
+        def msg = shouldFail(UnsupportedOperationException) {
+            proxy.ridiculously_silly_adder(4)
+        }
+        assertEquals "Directly Invoking Macros Is Not Supported. (namespace: grails, macro: ridiculously_silly_adder)", msg
     }
-
-  void testRecursiveMacroFail() {
-      def proxy = new ClojureProxy()
-      def msg = shouldFail(Exception) {
-          proxy.recursive_macro(4)
-      }
-      assertEquals 'Macro recursion exceeded maxMacroDepth of 25', msg
-    }
-
 }

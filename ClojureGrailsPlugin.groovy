@@ -75,15 +75,6 @@ The Clojure plugin adds support for easily accessing Clojure code in a Grails ap
             clojurePropertyName = 'Clj'
         }
 
-        def recursiveMacroMaxDepth = config.grails?.clojure?.recursiveMacroMaxDepth
-        if(recursiveMacroMaxDepth && recursiveMacroMaxDepth.isNumber()) {
-            recursiveMacroMaxDepth = recursiveMacroMaxDepth as Integer
-        } else {
-            recursiveMacroMaxDepth = 25
-        }
-        grails.clojure.ClojureProxy.metaClass.static."getMaxMacroDepth" = {
-            recursiveMacroMaxDepth
-        }
         def proxy = new grails.clojure.ClojureProxy()
         classes*.metaClass*."get${clojurePropertyName}" = {
             return proxy
