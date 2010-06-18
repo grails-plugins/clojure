@@ -20,7 +20,7 @@ class ClojureGrailsPlugin {
     // the plugin version
     def version = "0.5-SNAPSHOT"
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "1.1.1 > *"
+    def grailsVersion = "1.2 > *"
     // the other plugins this plugin depends on
     def dependsOn = [:]
     // resources that are excluded from plugin packaging
