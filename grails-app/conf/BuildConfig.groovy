@@ -8,9 +8,11 @@ grails.project.dependency.resolution = {
         grailsHome()
         grailsCentral()
         mavenCentral()
+
+       mavenRepo 'http://build.clojure.org/releases'
     }
-    
+
     dependencies {
-        runtime 'org.clojure:clojure:1.1.0'
+        runtime 'org.clojure:clojure:1.2.0'
     }
 }
