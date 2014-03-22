@@ -21,7 +21,7 @@ class ClojureGrailsPlugin {
     def scm = [url: 'https://github.com/grails-plugins/grails-clojure']
 
     // the plugin version
-    def version = "0.7-SNAPSHOT"
+    def version = "0.7"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.2 > *"
     // the other plugins this plugin depends on
