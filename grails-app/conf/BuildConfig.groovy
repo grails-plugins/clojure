@@ -13,6 +13,6 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        runtime 'org.clojure:clojure:1.2.0'
+        runtime 'org.clojure:clojure:1.5.1'
     }
 }

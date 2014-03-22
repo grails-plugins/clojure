@@ -57,6 +57,7 @@ The Clojure plugin adds support for easily accessing Clojure code in a Grails ap
         } else {
             clojureFiles = plugin.watchedResources
         }
+        Class.forName('clojure.lang.RT')
         clojureFiles.each {
             it.file.withReader { reader ->
                 Compiler.load reader

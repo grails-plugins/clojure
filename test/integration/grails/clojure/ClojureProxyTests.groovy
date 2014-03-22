@@ -58,7 +58,7 @@ class ClojureProxyTests extends GroovyTestCase {
 
           assertEquals 15, proxy.fifteen
           assertEquals "test string", proxy.test_string
-          shouldFail { proxy.blah }
+          assertTrue proxy.blah instanceof clojure.lang.Var.Unbound
     }
 
     void testClojureBindingWithSingleChararacterName() {
