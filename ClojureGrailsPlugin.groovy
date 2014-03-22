@@ -17,6 +17,9 @@
 import clojure.lang.Compiler
 
 class ClojureGrailsPlugin {
+
+    def scm = [url: 'https://github.com/grails-plugins/grails-clojure']
+
     // the plugin version
     def version = "0.7-SNAPSHOT"
     // the version or versions of Grails the plugin is designed for
@@ -31,11 +34,11 @@ class ClojureGrailsPlugin {
             "**/.gitignore",
             "grails-app/views/demo/*"
     ]
-    
+
     def watchedResources = "file:./src/clj/*.clj"
-    
+
     def observe = ['*']
-    
+
     // TODO Fill in these fields
     def author = "Jeff Brown"
     def authorEmail = "jeff.brown@springsource.com"
