@@ -1,6 +1,23 @@
-grails-clojure-*.zip
+# Eclipse
+.classpath
+.project
+.gradle/
+build/
+.settings/
+target-eclipse/
+# Intellij
+.idea/
+*.iml
+*.iws
+*.log
+test/reports
+target
+docs
+.DS_Store
 plugin.xml
-web-app/plugins
+*.zip
+web-app
+grails-clojure-*.zip
+src/webapp/plugins
 stacktrace.log
 target
-
