@@ -15,5 +15,5 @@
  */
 
 description "Example description", "grails example-usage"
-ant.mkdir dir: "${basedir}/src/main/clj"
+ant.mkdir dir: "${baseDir}/src/main/clj"
 println "Example Script"
