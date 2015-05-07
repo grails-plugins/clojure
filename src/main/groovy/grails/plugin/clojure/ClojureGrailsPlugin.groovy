@@ -23,7 +23,7 @@ class ClojureGrailsPlugin extends Plugin {
     def scm = [url: 'https://github.com/grails-plugins/grails-clojure']
 
     // the plugin version
-    def version = "1.0.SNAPSHOT"
+    def version = "1.0-SNAPSHOT"
 
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "3.0.1 > *"
