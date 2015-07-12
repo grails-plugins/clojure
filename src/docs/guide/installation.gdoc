@@ -1,0 +1,10 @@
+Installing the plugin is done by expressing a runtime dependency from @build.gradle@.
+
+{code}
+
+// ...
+
+dependencies {
+    runtime 'org.grails.plugins:clojure:2.0.0-SNAPSHOT'
+}
+{code}
