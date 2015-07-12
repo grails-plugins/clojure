@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>1 Introduction 2.0.0-SNAPSHOT</title>
+    <title>5 Function Namespaces 2.0.0-SNAPSHOT</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
     <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
@@ -62,16 +62,16 @@ function addJsClass() {
             <div id="main" class="corner-all">
 
                 
+                    <div class="toc-item prev-left"><a href="../guide/invoking.html">&lt;&lt; <strong>4</strong><span>Invoking Functions</span></a></div>
+                
 
                 <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
                 
-                    <div class="toc-item next-right"><a href="../guide/installation.html"><strong>2</strong><span>Installation</span> >></a></div>
-                
 
 
                 <div class="project">
-                    <h1>1 Introduction - Reference Documentation</h1>
+                    <h1>5 Function Namespaces - Reference Documentation</h1>
 
                     <p><strong>Authors:</strong> </p>
 
@@ -81,17 +81,52 @@ function addJsClass() {
                 </div>
 
                 
+                <div id="table-of-content">
+                    <h2>Table of Contents</h2>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#declaringFunctionNamespace"><strong>5.1</strong><span>Declaring Function Namespace</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#specifyingNamespace"><strong>5.2</strong><span>Specifying A Namespace At Function Invocation Time</span></a>
+                    </div>
+                    
+                </div>
+                
 
                 
 
-<h1 id="introduction">1 Introduction</h1>
-The Clojure plugin for Grails make sit very easy to invoke Clojure functions from Grails.
+<h1 id="namespaces">5 Function Namespaces</h1>
+Clojure allows functions to be defined in a namespace which allows multiple functions with the same
+name to be defined, provided they are in different namespaces.
+
+
+
+<h2 id="declaringFunctionNamespace">5.1 Declaring Function Namespace</h2>
+When defining Clojure functions you need to specify a namespace.<p class="paragraph"/><div class="code"><pre>;; src/clj/general.clj<p class="paragraph"/>;; Functions defined in <span class="java&#45;keyword">this</span> source file will be in the grails namespace
+(ns grails)<p class="paragraph"/>;; function declarions go here
+;; ...</pre></div><p class="paragraph"/>
+<div class="code"><pre>;; src/clj/reports.clj<p class="paragraph"/>;; Functions defined in <span class="java&#45;keyword">this</span> source file will be in the accounting namespace
+(ns accounting)<p class="paragraph"/>;; function declarions go here
+;; ...</pre></div>
+
+
+
+<h2 id="specifyingNamespace">5.2 Specifying A Namespace At Function Invocation Time</h2>
+By default the plugin will invoke clojure functions which are defined in the <code>grails</code> namespace.
+In order to invoke functions in any other namespace, the invocation needs to specify the name
+of the target namespace using Groovy's subscript operator.<p class="paragraph"/><div class="code"><pre>// grails&#45;app/controllers/demo/SomeController.groovy<p class="paragraph"/><span class="java&#45;keyword">package</span> demo<p class="paragraph"/>class SomeController &#123;<p class="paragraph"/>    def add(<span class="java&#45;object">int</span> x, <span class="java&#45;object">int</span> y) &#123;
+        // <span class="java&#45;keyword">this</span> will invoke the report function in the grails namespace
+        clj.report()<p class="paragraph"/>        // <span class="java&#45;keyword">this</span> is equivalent to the code above
+        clj&#91;'grails'&#93;.report()<p class="paragraph"/>        // <span class="java&#45;keyword">this</span> will invoke the report function in the accounting namespace
+        clj&#91;'accounting'&#93;.report()<p class="paragraph"/>        // &#8230;
+    &#125;
+&#125;</pre></div>
 
 
 
                 <div style="clear:both;margin-top:15px;"></div>
                 
-                    <div class="toc-item next-right"><a href="../guide/installation.html"><strong>2</strong><span>Installation</span> >></a></div>
+                    <div class="toc-item prev-left"><a href="../guide/invoking.html">&lt;&lt; <strong>4</strong><span>Invoking Functions</span></a></div>
                 
                 <div style="clear:both"></div>
             </div>
