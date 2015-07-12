@@ -33,6 +33,8 @@ function addJsClass(el) {
                             
                             <div class="toc-item" style="margin-left:0"><a href="#namespaces"><strong>5</strong><span>Function Namespaces</span></a></div>
                             
+                            <div class="toc-item" style="margin-left:0"><a href="#dynamicProperty"><strong>6</strong><span>Configuring The Default Dynamic Property Name</span></a></div>
+                            
                         </div>
                     </div>
                 </li>
@@ -81,6 +83,8 @@ function addJsClass(el) {
                             <div class="toc-item" style="margin-left:10px"><a href="#declaringFunctionNamespace"><strong>5.1</strong><span>Declaring Function Namespace</span></a></div>
                             
                             <div class="toc-item" style="margin-left:10px"><a href="#specifyingNamespace"><strong>5.2</strong><span>Specifying A Namespace At Function Invocation Time</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#dynamicProperty"><strong>6</strong><span>Configuring The Default Dynamic Property Name</span></a></div>
                             
                             <div style="clear:both" ></div>
                         </div>
@@ -145,6 +149,22 @@ of the target namespace using Groovy's subscript operator.<p class="paragraph"/>
     &#125;
 &#125;</pre></div>
 
+
+
+<h1 id="dynamicProperty">6 Configuring The Default Dynamic Property Name</h1>
+By default the name of the dynamic property that is added to all
+Grails artefacts for accessing Clojure functions is called <code>clj</code>.<p class="paragraph"/><div class="code"><pre>// grails&#45;app/controllers/demo/DemoController.groovy<p class="paragraph"/><span class="java&#45;keyword">package</span> demo<p class="paragraph"/>class DemoController &#123;<p class="paragraph"/>    def add(<span class="java&#45;object">int</span> x, <span class="java&#45;object">int</span> y) &#123;
+        // <span class="java&#45;keyword">this</span> will invoke the add_numbers clojure function&#8230;
+        def sum = clj.add_numbers(x, y)<p class="paragraph"/>        render <span class="java&#45;quote">"The sum of $x and $y is $sum"</span>
+    &#125;
+&#125;</pre></div><p class="paragraph"/>The name of that property is configurable in <code>application.yml</code> by assigning a value to
+the <code>grails.clojure.dynamicPropertyName</code> config property.<p class="paragraph"/><div class="code"><pre>grails:
+    clojure:
+        dynamicPropertyName: mathHelper</pre></div><p class="paragraph"/><div class="code"><pre>// grails&#45;app/controllers/demo/DemoController.groovy<p class="paragraph"/><span class="java&#45;keyword">package</span> demo<p class="paragraph"/>class DemoController &#123;<p class="paragraph"/>    def add(<span class="java&#45;object">int</span> x, <span class="java&#45;object">int</span> y) &#123;
+        // <span class="java&#45;keyword">this</span> will invoke the add_numbers clojure function&#8230;
+        def sum = mathHelper.add_numbers(x, y)<p class="paragraph"/>        render <span class="java&#45;quote">"The sum of $x and $y is $sum"</span>
+    &#125;
+&#125;</pre></div>
 
                     </div>
                 </td>
