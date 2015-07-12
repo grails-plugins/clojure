@@ -1,0 +1,15 @@
+The plugin provides a convenience command for creating Clojure source files.
+
+{code}
+$ grails create-clojure-script sample
+| Rendered template template.clj to destination src/main/clj/sample.clj
+{code}
+
+That will create a Clojure source file which may be used as a starting point.
+
+{code}
+(ns grails)
+
+(defn sample_fn []
+    (println "sample_fn function called."))
+{code}

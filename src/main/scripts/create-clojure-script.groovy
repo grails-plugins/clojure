@@ -6,7 +6,7 @@ description( "Creates a new Clojure script" ) {
 def scriptName = args[0]
 def model = model(scriptName)
 def overwrite = flag('force') ? true : false
-render  template: template('clojure/sample.clj'),
+render  template: template('clojure/template.clj'),
         destination: file("src/main/clj/${model.lowerCaseName}.clj"),
         model: model,
         overwrite: overwrite
