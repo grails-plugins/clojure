@@ -1,0 +1,43 @@
+By default the name of the dynamic property that is added to all
+Grails artefacts for accessing Clojure functions is called @clj@.
+
+{code}
+// grails-app/controllers/demo/DemoController.groovy
+
+package demo
+
+class DemoController {
+
+    def add(int x, int y) {
+        // this will invoke the add_numbers clojure function...
+        def sum = clj.add_numbers(x, y)
+
+        render "The sum of $x and $y is $sum"
+    }
+}
+{code}
+
+The name of that property is configurable in @application.yml@ by assigning a value to
+the @grails.clojure.dynamicPropertyName@ config property.
+
+{code}
+grails:
+    clojure:
+        dynamicPropertyName: mathHelper
+{code}
+
+{code}
+// grails-app/controllers/demo/DemoController.groovy
+
+package demo
+
+class DemoController {
+
+    def add(int x, int y) {
+        // this will invoke the add_numbers clojure function...
+        def sum = mathHelper.add_numbers(x, y)
+
+        render "The sum of $x and $y is $sum"
+    }
+}
+{code}

@@ -6,3 +6,4 @@ namespaces:
     title: Function Namespaces
     declaringFunctionNamespace: Declaring Function Namespace
     specifyingNamespace: Specifying A Namespace At Function Invocation Time
+dynamicProperty: Configuring The Default Dynamic Property Name
