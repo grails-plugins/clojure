@@ -35,7 +35,8 @@ class ClojureGrailsPlugin extends Plugin {
             "src/main/clj/*",
             "grails-app/controllers/*",
             "**/.gitignore",
-            "grails-app/views/demo/*"
+            "grails-app/views/demo/*",
+            "**/grails/plugin/clojure/DemoController*"
     ]
 
     def watchedResources = "file:./src/main/clj/*.clj"
