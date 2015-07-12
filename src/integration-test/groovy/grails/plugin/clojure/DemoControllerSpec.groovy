@@ -1,16 +1,13 @@
 package grails.plugin.clojure
 
-import geb.spock.*
+import geb.spock.GebSpec
 import grails.plugin.clojure.pages.FiboPage
 import grails.test.mixin.integration.Integration
-import grails.transaction.Rollback
-import geb.spock.*
 
 /**
  * See the API for {@link grails.test.mixin.support.GrailsUnitTestMixin} for usage instructions
  */
 @Integration
-@Rollback
 class DemoControllerSpec extends GebSpec {
 
     void "canary test"() {
