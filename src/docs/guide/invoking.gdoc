@@ -1,0 +1,18 @@
+Clojure functions may be invocations from Grails artefacts look like normal
+method calls made on a property named @clj@.
+
+{code}
+// grails-app/controllers/demo/DemoController.groovy
+
+package demo
+
+class DemoController {
+
+    def add(int x, int y) {
+        // this will invoke the add_numbers clojure function...
+        def sum = clj.add_numbers(x, y)
+
+        render "The sum of $x and $y is $sum"
+    }
+}
+{code}

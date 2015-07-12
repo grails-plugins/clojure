@@ -1,0 +1,25 @@
+By default the plugin will invoke clojure functions which are defined in the @grails@ namespace.
+In order to invoke functions in any other namespace, the invocation needs to specify the name
+of the target namespace using Groovy's subscript operator.
+
+{code}
+// grails-app/controllers/demo/SomeController.groovy
+
+package demo
+
+class SomeController {
+
+    def add(int x, int y) {
+        // this will invoke the report function in the grails namespace
+        clj.report()
+
+        // this is equivalent to the code above
+        clj['grails'].report()
+
+        // this will invoke the report function in the accounting namespace
+        clj['accounting'].report()
+
+        // ...
+    }
+}
+{code}

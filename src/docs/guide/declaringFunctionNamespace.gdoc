@@ -1,0 +1,22 @@
+When defining Clojure functions you need to specify a namespace.
+
+{code}
+;; src/clj/general.clj
+
+;; Functions defined in this source file will be in the grails namespace
+(ns grails)
+
+;; function declarions go here
+;; ...
+{code}
+
+
+{code}
+;; src/clj/reports.clj
+
+;; Functions defined in this source file will be in the accounting namespace
+(ns accounting)
+
+;; function declarions go here
+;; ...
+{code}

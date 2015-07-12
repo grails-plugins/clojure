@@ -1,0 +1,11 @@
+The plugin will discover all @.clj@ folders defined under @src/main/clj/@ and will
+make all of the functions defined in those source files available for invocation
+from Grails artefacts (controllers, services, etc...).
+
+{code}
+;; src/main/clj/math.clj
+(ns grails)
+
+(defn add_numbers [x y z]
+    (+ x y z))
+{code}

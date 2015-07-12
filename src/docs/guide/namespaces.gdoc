@@ -1,0 +1,2 @@
+Clojure allows functions to be defined in a namespace which allows multiple functions with the same
+name to be defined, provided they are in different namespaces.
