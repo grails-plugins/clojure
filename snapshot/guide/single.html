@@ -76,6 +76,8 @@ function addJsClass(el) {
                             
                             <div class="toc-item" style="margin-left:0px"><a href="#definingFunctions"><strong>3</strong><span>Defining Functions</span></a></div>
                             
+                            <div class="toc-item" style="margin-left:10px"><a href="#createFunctionScript"><strong>3.1</strong><span>Using create-clojure-script</span></a></div>
+                            
                             <div class="toc-item" style="margin-left:0px"><a href="#invoking"><strong>4</strong><span>Invoking Functions</span></a></div>
                             
                             <div class="toc-item" style="margin-left:0px"><a href="#namespaces"><strong>5</strong><span>Function Namespaces</span></a></div>
@@ -109,6 +111,13 @@ make all of the functions defined in those source files available for invocation
 from Grails artefacts (controllers, services, etc...).<p class="paragraph"/><div class="code"><pre>;; src/main/clj/math.clj
 (ns grails)<p class="paragraph"/>(defn add_numbers &#91;x y z&#93;
     (+ x y z))</pre></div>
+
+
+
+<h2 id="createFunctionScript">3.1 Using create-clojure-script</h2>
+The plugin provides a convenience command for creating Clojure source files.<p class="paragraph"/><div class="code"><pre>$ grails create&#45;clojure&#45;script sample
+| Rendered template template.clj to destination src/main/clj/sample.clj</pre></div><p class="paragraph"/>That will create a Clojure source file which may be used as a starting point.<p class="paragraph"/><div class="code"><pre>(ns grails)<p class="paragraph"/>(defn sample_fn &#91;&#93;
+    (println <span class="java&#45;quote">"sample_fn function called."</span>))</pre></div>
 
 
 
