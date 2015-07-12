@@ -1,20 +1,7 @@
----
 grails:
     profile: web-plugin
     codegen:
         defaultPackage: grails.plugin.clojure
-info:
-    app:
-        name: '@info.app.name@'
-        version: '@info.app.version@'
-        grailsVersion: '@info.app.grailsVersion@'
-spring:
-    groovy:
-        template:
-            check-template-location: false
-
----
-grails:
     mime:
         disable:
             accept:
@@ -67,8 +54,6 @@ grails:
                 scriptlets: html
                 taglib: none
                 staticparts: none
-
----
 dataSource:
     pooled: true
     jmxExport: true
@@ -107,3 +92,12 @@ environments:
                 testOnReturn: false
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+info:
+    app:
+        name: '@info.app.name@'
+        version: '@info.app.version@'
+        grailsVersion: '@info.app.grailsVersion@'
+spring:
+    groovy:
+        template:
+            check-template-location: false
