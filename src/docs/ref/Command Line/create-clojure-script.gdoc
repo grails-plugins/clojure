@@ -1,0 +1,26 @@
+h1. create-clojure-script
+
+h2. Purpose
+
+The @create-clojure-script@ command creates a Clojure source file under @src/main/clj@.
+
+h2. Usage
+{code:java}
+grails create-clojure-script [name]
+{code}
+
+h2. Example
+
+{code}
+$ grails create-clojure-script sample
+| Rendered template template.clj to destination src/main/clj/sample.clj
+{code}
+
+That will create a Clojure source file which may be used as a starting point.
+
+{code}
+(ns grails)
+
+(defn sample_fn []
+    (println "sample_fn function called."))
+{code}
