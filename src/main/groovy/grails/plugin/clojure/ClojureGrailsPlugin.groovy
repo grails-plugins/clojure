@@ -20,15 +20,11 @@ import clojure.lang.Compiler
 
 class ClojureGrailsPlugin extends Plugin {
 
-    def scm = [url: 'https://github.com/grails-plugins/grails-clojure']
-
-    // the plugin version
-    def version = "1.0-SNAPSHOT"
+    def scm = [url: 'https://github.com/grails-plugin/clojure']
 
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "3.0.1 > *"
-    // the other plugins this plugin depends on
-    def dependsOn = [:]
+    def grailsVersion = "3.0.0 > *"
+
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
             "grails-app/views/error.gsp",
@@ -43,11 +39,10 @@ class ClojureGrailsPlugin extends Plugin {
 
     def observe = ['*']
 
-    // TODO Fill in these fields
     def author = "Jeff Brown"
-    def authorEmail = "jbrown@gopivotal.com"
+    def authorEmail = "brownj@ociweb.com"
 
-    def developers = [ [ name: "Jef Brown", email: "jbrown@gopivotal.com" ],
+    def developers = [ [ name: "Jef Brown", email: "brownj@ociweb.com" ],
                        [ name: "Puneet Behl", email: "puneet.behl007@gmail.com"]
     ]
 
@@ -57,7 +52,7 @@ The Clojure plugin adds support for easily accessing Clojure code in a Grails ap
 '''
 
     // URL to the plugin's documentation
-    def documentation = "http://grails.org/Clojure+Plugin"
+    def documentation = "http://grails-plugins.github.io/clojure/latest/"
 
     void doWithDynamicMethods() {
         def clojureFiles
