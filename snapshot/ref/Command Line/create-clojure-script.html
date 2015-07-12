@@ -2,12 +2,12 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>5.2 Specifying A Namespace At Function Invocation Time 2.0.0-SNAPSHOT</title>
+    <title>clojure 2.0.0-SNAPSHOT</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
-    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
     <script type="text/javascript">
-function addJsClass() {
+function addJsClass(el) {
     var classes = document.body.className.split(" ");
     classes.push("js");
     document.body.className = classes.join(" ");
@@ -16,13 +16,14 @@ function addJsClass() {
 </head>
 
 <body class="body" onload="addJsClass();">
+
 <div id="navigation">
     <ul>
         <li>
             <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
                 <a href="../../guide/index.html" class="button">Table of contents</a>
 
-                <div id="nav-summary-childs" style="display:none;">
+                <div id="nav-summary-childs">
                     
                     <div class="toc-item" style="margin-left:0"><a href="../../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
                     </div>
@@ -62,53 +63,15 @@ function addJsClass() {
 <table id="colset" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td id="col1">
-            <div id="main" class="corner-all">
-
-                
-                    <div class="toc-item prev-left"><a href="../../guide/invoking.html">&lt;&lt; <strong>4</strong><span>Invoking Functions</span></a></div>
-                
+            <div id="main" class="reference corner-all">
 
                 <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
-                
-                    <div class="toc-item next-right"><a href="../../guide/dynamicProperty.html"><strong>6</strong><span>Configuring The Default Dynamic Property Name</span> >></a></div>
-                
+                <h1>create-clojure-script</h1><p class="paragraph"/><h2>Purpose</h2><p class="paragraph"/>The <code>create-clojure-script</code> command creates a Clojure source file under <code>src/main/clj</code>.<p class="paragraph"/><h2>Usage</h2>
+<div class="code"><pre>grails create&#45;clojure&#45;script &#91;name&#93;</pre></div><p class="paragraph"/><h2>Example</h2><p class="paragraph"/><div class="code"><pre>$ grails create&#45;clojure&#45;script sample
+| Rendered template template.clj to destination src/main/clj/sample.clj</pre></div><p class="paragraph"/>That will create a Clojure source file which may be used as a starting point.<p class="paragraph"/><div class="code"><pre>(ns grails)<p class="paragraph"/>(defn sample_fn &#91;&#93;
+    (println <span class="java&#45;quote">"sample_fn function called."</span>))</pre></div>
 
-
-                <div class="project">
-                    <h1>5.2 Specifying A Namespace At Function Invocation Time - Reference Documentation</h1>
-
-                    <p><strong>Authors:</strong> </p>
-
-                    <p><strong>Version:</strong> 2.0.0-SNAPSHOT</p>
-
-                    
-                </div>
-
-                
-
-                
-
-<h2 id="specifyingNamespace">5.2 Specifying A Namespace At Function Invocation Time</h2>
-By default the plugin will invoke clojure functions which are defined in the <code>grails</code> namespace.
-In order to invoke functions in any other namespace, the invocation needs to specify the name
-of the target namespace using Groovy's subscript operator.<p class="paragraph"/><div class="code"><pre>// grails&#45;app/controllers/demo/SomeController.groovy<p class="paragraph"/><span class="java&#45;keyword">package</span> demo<p class="paragraph"/>class SomeController &#123;<p class="paragraph"/>    def add(<span class="java&#45;object">int</span> x, <span class="java&#45;object">int</span> y) &#123;
-        // <span class="java&#45;keyword">this</span> will invoke the report function in the grails namespace
-        clj.report()<p class="paragraph"/>        // <span class="java&#45;keyword">this</span> is equivalent to the code above
-        clj&#91;'grails'&#93;.report()<p class="paragraph"/>        // <span class="java&#45;keyword">this</span> will invoke the report function in the accounting namespace
-        clj&#91;'accounting'&#93;.report()<p class="paragraph"/>        // &#8230;
-    &#125;
-&#125;</pre></div>
-
-
-
-                <div style="clear:both;margin-top:15px;"></div>
-                
-                    <div class="toc-item prev-left"><a href="../../guide/invoking.html">&lt;&lt; <strong>4</strong><span>Invoking Functions</span></a></div>
-                
-                    <div class="toc-item next-right"><a href="../../guide/dynamicProperty.html"><strong>6</strong><span>Configuring The Default Dynamic Property Name</span> >></a></div>
-                
-                <div style="clear:both"></div>
             </div>
         </td>
         <td id="col2">
@@ -119,13 +82,15 @@ of the target namespace using Groovy's subscript operator.<p class="paragraph"/>
                 </div>
                 <div class="menu">
                     
-                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Command Line</h1><div class="menu-sub">
-                        
+                    <div class="menu-block">
+                        <h1 class="menu-title" onclick="toggleRef(nextElement(this))">Command Line</h1>
+                        <div class="menu-sub selected">
+                            
                             
                             <div class="menu-item"><a href="../../ref/Command%20Line/create-clojure-script.html">create-clojure-script</a>
                             </div>
                             
-                            </div>
+                        </div>
                     </div>
                     
                 </div>
@@ -139,7 +104,8 @@ of the target namespace using Groovy's subscript operator.<p class="paragraph"/>
     
 </div>
 
-<script type="text/javascript" src="../js/docs.js"></script>
+
+<script type="text/javascript" src="../../js/docs.js"></script>
 
 </body>
 </html>
