@@ -5,6 +5,6 @@ Installing the plugin is done by expressing a runtime dependency from @build.gra
 // ...
 
 dependencies {
-    runtime 'org.grails.plugins:clojure:2.0.0.M1'
+    runtime 'org.grails.plugins:clojure:2.0.0.RC1'
 }
 {code}
