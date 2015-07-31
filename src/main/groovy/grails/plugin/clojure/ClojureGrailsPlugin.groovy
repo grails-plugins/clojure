@@ -72,6 +72,15 @@ The Clojure plugin adds support for easily accessing Clojure code in a Grails ap
         }
     }
 
+    Closure doWithSpring() {{ ->
+        def beanConfig = config.grails.clojure.namespaceBeans
+        beanConfig?.each { namespace, beanName ->
+            "$beanName"(ClojureProxy) {
+                ns = namespace
+            }
+        }
+    }}
+
     private void addDynamicProperty() {
         def classes = grailsApplication.allClasses
         def clojurePropertyName = config.grails?.clojure?.dynamicPropertyName

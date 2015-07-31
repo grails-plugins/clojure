@@ -1,0 +1,63 @@
+The plugin can create Spring beans that provide access to Clojure functions.
+Each function namespace can be associated with a different Spring bean.
+
+Function namespaces are associated with Spring bean names that are defined in
+@application.yml@.  Key value pairs under @grails.clojure.namespaceBeans@
+associate function namespaces with Spring bean names.
+
+{code}
+;; src/main/clj/mathematics.clj
+(ns math)
+
+(def doit []
+  ;; doit code here
+  )
+{code}
+
+{code}
+;; src/main/clj/reporting.clj
+(ns report)
+
+(def doit []
+  ;; doit code here
+  )
+{code}
+
+{code}
+# grails-app/conf/application.yml
+
+grails:
+    clojure:
+        namespaceBeans:
+            math: mathHelper
+            report: reportHelper
+{code}
+
+The plugin will create beans named @mathHelper@ and @reportHelper@
+which are associated with the @math@ and @report@ namespaces respectively.
+
+{code}
+// grails-app/controllers/demo/DemoController.groovy
+package demo
+
+class DemoController {
+    def mathHelper
+    def reportHelper
+
+    def someAction() {
+        // this will invoke the doit function in the math namespace
+        mathHelper.doit()
+
+        // ...
+    }
+
+
+    def someOtherAction() {
+        // this will invoke the doit function in the report namespace
+        reportHelper.doit()
+
+        // ...
+    }
+
+}
+{code}

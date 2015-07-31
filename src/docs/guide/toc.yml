@@ -8,4 +8,5 @@ namespaces:
     title: Function Namespaces
     declaringFunctionNamespace: Declaring Function Namespace
     specifyingNamespace: Specifying A Namespace At Function Invocation Time
+definingSpringBeans: Spring Beans For Namespaces
 dynamicProperty: Configuring The Default Dynamic Property Name
