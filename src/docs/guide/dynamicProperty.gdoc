@@ -41,3 +41,12 @@ class DemoController {
     }
 }
 {code}
+
+The dynamic property can be disabled altogether by assigning @false@
+to the @grails.clojure.addDynamicProperty@ config setting in @application.yml@.
+
+{code}
+grails:
+    clojure:
+        addDynamicProperty: false
+{code}
