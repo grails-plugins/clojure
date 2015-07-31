@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
-        <title>clojure 2.0.0.RC1</title>
+        <title>clojure 2.0.0.RC2</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
         <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8" />
@@ -33,7 +33,9 @@ function addJsClass(el) {
                             
                             <div class="toc-item" style="margin-left:0"><a href="#namespaces"><strong>5</strong><span>Function Namespaces</span></a></div>
                             
-                            <div class="toc-item" style="margin-left:0"><a href="#dynamicProperty"><strong>6</strong><span>Configuring The Default Dynamic Property Name</span></a></div>
+                            <div class="toc-item" style="margin-left:0"><a href="#definingSpringBeans"><strong>6</strong><span>Spring Beans For Namespaces</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0"><a href="#dynamicProperty"><strong>7</strong><span>Configuring The Default Dynamic Property Name</span></a></div>
                             
                         </div>
                     </div>
@@ -62,7 +64,7 @@ function addJsClass(el) {
                         <div class="project">
                             <h1>clojure - Reference Documentation</h1>
                             <p><strong>Authors:</strong> </p>
-                            <p><strong>Version:</strong> 2.0.0.RC1</p>
+                            <p><strong>Version:</strong> 2.0.0.RC2</p>
                             
                         </div>
 
@@ -86,7 +88,9 @@ function addJsClass(el) {
                             
                             <div class="toc-item" style="margin-left:10px"><a href="#specifyingNamespace"><strong>5.2</strong><span>Specifying A Namespace At Function Invocation Time</span></a></div>
                             
-                            <div class="toc-item" style="margin-left:0px"><a href="#dynamicProperty"><strong>6</strong><span>Configuring The Default Dynamic Property Name</span></a></div>
+                            <div class="toc-item" style="margin-left:0px"><a href="#definingSpringBeans"><strong>6</strong><span>Spring Beans For Namespaces</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#dynamicProperty"><strong>7</strong><span>Configuring The Default Dynamic Property Name</span></a></div>
                             
                             <div style="clear:both" ></div>
                         </div>
@@ -100,7 +104,7 @@ The Clojure plugin for Grails make sit very easy to invoke Clojure functions fro
 
 <h1 id="installation">2 Installation</h1>
 Installing the plugin is done by expressing a runtime dependency from <code>build.gradle</code>.<p class="paragraph"/><div class="code"><pre>// ...<p class="paragraph"/>dependencies &#123;
-    runtime 'org.grails.plugins:clojure:2.0.0.RC1'
+    runtime 'org.grails.plugins:clojure:2.0.0.RC2'
 &#125;</pre></div>
 
 
@@ -159,7 +163,35 @@ of the target namespace using Groovy's subscript operator.<p class="paragraph"/>
 
 
 
-<h1 id="dynamicProperty">6 Configuring The Default Dynamic Property Name</h1>
+<h1 id="definingSpringBeans">6 Spring Beans For Namespaces</h1>
+The plugin can create Spring beans that provide access to Clojure functions.
+Each function namespace can be associated with a different Spring bean.<p class="paragraph"/>Function namespaces are associated with Spring bean names that are defined in
+<code>application.yml</code>.  Key value pairs under <code>grails.clojure.namespaceBeans</code>
+associate function namespaces with Spring bean names.<p class="paragraph"/><div class="code"><pre>;; src/main/clj/mathematics.clj
+(ns math)<p class="paragraph"/>(def doit &#91;&#93;
+  ;; doit code here
+  )</pre></div><p class="paragraph"/><div class="code"><pre>;; src/main/clj/reporting.clj
+(ns report)<p class="paragraph"/>(def doit &#91;&#93;
+  ;; doit code here
+  )</pre></div><p class="paragraph"/><div class="code"><pre>&#35; grails&#45;app/conf/application.yml<p class="paragraph"/>grails:
+    clojure:
+        namespaceBeans:
+            math: mathHelper
+            report: reportHelper</pre></div><p class="paragraph"/>The plugin will create beans named <code>mathHelper</code> and <code>reportHelper</code>
+which are associated with the <code>math</code> and <code>report</code> namespaces respectively.<p class="paragraph"/><div class="code"><pre>// grails&#45;app/controllers/demo/DemoController.groovy
+<span class="java&#45;keyword">package</span> demo<p class="paragraph"/>class DemoController &#123;
+    def mathHelper
+    def reportHelper<p class="paragraph"/>    def someAction() &#123;
+        // <span class="java&#45;keyword">this</span> will invoke the doit function in the math namespace
+        mathHelper.doit()<p class="paragraph"/>        // &#8230;
+    &#125;<p class="paragraph"/>
+    def someOtherAction() &#123;
+        // <span class="java&#45;keyword">this</span> will invoke the doit function in the report namespace
+        reportHelper.doit()<p class="paragraph"/>        // &#8230;
+    &#125;<p class="paragraph"/>&#125;</pre></div>
+
+
+<h1 id="dynamicProperty">7 Configuring The Default Dynamic Property Name</h1>
 By default the name of the dynamic property that is added to all
 Grails artefacts for accessing Clojure functions is called <code>clj</code>.<p class="paragraph"/><div class="code"><pre>// grails&#45;app/controllers/demo/DemoController.groovy<p class="paragraph"/><span class="java&#45;keyword">package</span> demo<p class="paragraph"/>class DemoController &#123;<p class="paragraph"/>    def add(<span class="java&#45;object">int</span> x, <span class="java&#45;object">int</span> y) &#123;
         // <span class="java&#45;keyword">this</span> will invoke the add_numbers clojure function&#8230;
@@ -172,7 +204,11 @@ the <code>grails.clojure.dynamicPropertyName</code> config property.<p class="pa
         // <span class="java&#45;keyword">this</span> will invoke the add_numbers clojure function&#8230;
         def sum = mathHelper.add_numbers(x, y)<p class="paragraph"/>        render <span class="java&#45;quote">"The sum of $x and $y is $sum"</span>
     &#125;
-&#125;</pre></div>
+&#125;</pre></div><p class="paragraph"/>The dynamic property can be disabled altogether by assigning <code>false</code>
+to the <code>grails.clojure.addDynamicProperty</code> config setting in <code>application.yml</code>.<p class="paragraph"/><div class="code"><pre>grails:
+    clojure:
+        addDynamicProperty: <span class="java&#45;keyword">false</span></pre></div>
+
 
                     </div>
                 </td>
