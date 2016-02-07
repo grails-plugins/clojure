@@ -21,6 +21,9 @@ import clojure.lang.Compiler
 class ClojureGrailsPlugin extends Plugin {
 
     def scm = [url: 'https://github.com/grails-plugins/clojure']
+    
+    def issueManagement = [ system: "Github Issues",
+                            url: "https://github.com/grails-plugins/clojure/issues" ]
 
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "3.0.0 > *"
