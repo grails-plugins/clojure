@@ -20,7 +20,7 @@ import clojure.lang.Compiler
 
 class ClojureGrailsPlugin extends Plugin {
 
-    def scm = [url: 'https://github.com/grails-plugin/clojure']
+    def scm = [url: 'https://github.com/grails-plugins/clojure']
 
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "3.0.0 > *"
@@ -42,7 +42,7 @@ class ClojureGrailsPlugin extends Plugin {
     def author = "Jeff Brown"
     def authorEmail = "brownj@ociweb.com"
 
-    def developers = [ [ name: "Jef Brown", email: "brownj@ociweb.com" ],
+    def developers = [ [ name: "Jeff Brown", email: "brownj@ociweb.com" ],
                        [ name: "Puneet Behl", email: "puneet.behl007@gmail.com"]
     ]
 
