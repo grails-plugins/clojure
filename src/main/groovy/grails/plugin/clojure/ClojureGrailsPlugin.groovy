@@ -111,7 +111,7 @@ The Clojure plugin adds support for easily accessing Clojure code in a Grails ap
                     clojure.lang.Compiler.load reader
                 }
         } else if(source instanceof Class) {
-            addDynamicProperty([source])
+            addDynamicProperty()
         }
     }
 }
