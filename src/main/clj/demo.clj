@@ -1,4 +1,4 @@
-(ns grails)
+(ns demo)
 
 (defn simple []
     (str "A Simple Clojure Function"))

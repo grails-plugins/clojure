@@ -8,7 +8,7 @@ import spock.lang.Specification
 class ClojureProxyTests extends Specification {
 
     @Shared
-    def proxy = new ClojureProxy()
+    def proxy = new ClojureProxy(ns: 'demo')
 
     void 'test a simple clojure function'() {
         expect:
@@ -90,6 +90,6 @@ class ClojureProxyTests extends Specification {
 
         then:
         UnsupportedOperationException ex = thrown()
-        "Directly Invoking Macros Is Not Supported. (namespace: grails, macro: silly_adder)" == ex.message
+        "Directly Invoking Macros Is Not Supported. (namespace: demo, macro: silly_adder)" == ex.message
     }
 }
