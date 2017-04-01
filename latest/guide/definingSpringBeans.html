@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>6 Spring Beans For Namespaces 2.0.0.RC2</title>
+    <title>6 Spring Beans For Namespaces 2.0.0.RC4</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
     <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
@@ -17,50 +17,50 @@ function addJsClass() {
 
 <body class="body" onload="addJsClass();">
 <div id="navigation">
-    <ul>
-        <li>
-            <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
-                <a href="../guide/index.html" class="button">Table of contents</a>
-
-                <div id="nav-summary-childs" style="display:none;">
-                    
-                    <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
-                    </div>
-                    
-                    <div class="toc-item" style="margin-left:0"><a href="../guide/installation.html"><strong>2</strong><span>Installation</span></a>
-                    </div>
-                    
-                    <div class="toc-item" style="margin-left:0"><a href="../guide/definingFunctions.html"><strong>3</strong><span>Defining Functions</span></a>
-                    </div>
-                    
-                    <div class="toc-item" style="margin-left:0"><a href="../guide/invoking.html"><strong>4</strong><span>Invoking Functions</span></a>
-                    </div>
-                    
-                    <div class="toc-item" style="margin-left:0"><a href="../guide/namespaces.html"><strong>5</strong><span>Function Namespaces</span></a>
-                    </div>
-                    
-                    <div class="toc-item" style="margin-left:0"><a href="../guide/definingSpringBeans.html"><strong>6</strong><span>Spring Beans For Namespaces</span></a>
-                    </div>
-                    
-                    <div class="toc-item" style="margin-left:0"><a href="../guide/dynamicProperty.html"><strong>7</strong><span>Configuring The Default Dynamic Property Name</span></a>
-                    </div>
-                    
-                </div>
-            </div>
-        </li>
-        <li class="separator selected">
-            <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
-        </li>
-    </ul>
-</div>
-<div id="header">
-    <div class="images clearfix">
+    <div class="navTitle">
         
-        
+        clojure
     </div>
-    <p></p>
-</div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../guide/index.html" class="button">Table of contents</a>
 
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/installation.html"><strong>2</strong><span>Installation</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/definingFunctions.html"><strong>3</strong><span>Defining Functions</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/invoking.html"><strong>4</strong><span>Invoking Functions</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/namespaces.html"><strong>5</strong><span>Function Namespaces</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/definingSpringBeans.html"><strong>6</strong><span>Spring Beans For Namespaces</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/dynamicProperty.html"><strong>7</strong><span>Configuring The Default Dynamic Property Name</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
 
 <table id="colset" border="0" cellpadding="0" cellspacing="0">
     <tr>
@@ -79,13 +79,9 @@ function addJsClass() {
 
 
                 <div class="project">
-                    <h1>6 Spring Beans For Namespaces - Reference Documentation</h1>
+                    <h1>6 Spring Beans For Namespaces</h1>
 
-                    <p><strong>Authors:</strong> </p>
-
-                    <p><strong>Version:</strong> 2.0.0.RC2</p>
-
-                    
+                    <p><strong>Version:</strong> 2.0.0.RC4</p>
                 </div>
 
                 
@@ -93,6 +89,8 @@ function addJsClass() {
                 
 
 <h1 id="definingSpringBeans">6 Spring Beans For Namespaces</h1>
+
+
 The plugin can create Spring beans that provide access to Clojure functions.
 Each function namespace can be associated with a different Spring bean.<p class="paragraph"/>Function namespaces are associated with Spring bean names that are defined in
 <code>application.yml</code>.  Key value pairs under <code>grails.clojure.namespaceBeans</code>
