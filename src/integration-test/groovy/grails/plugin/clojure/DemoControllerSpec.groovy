@@ -20,7 +20,7 @@ class DemoControllerSpec extends GebSpec {
         go '/demo/simple'
 
         then:
-        $("title").text() == 'A Simple Clojure Function'
+        $().text().contains 'A Simple Clojure Function'
     }
 
     void "test for fibonacci action"() {
@@ -54,12 +54,12 @@ class DemoControllerSpec extends GebSpec {
         go '/demo/one'
 
         then: 'title should be one::doit'
-        $("title").text() == 'one::doit'
+        $().text().contains 'one::doit'
 
         when: 'called action two'
         go '/demo/two'
 
         then: 'title should be two::doit'
-        $("title").text() == 'two::doit'
+        $().text().contains 'two::doit'
     }
 }
