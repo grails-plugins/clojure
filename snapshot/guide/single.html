@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
-        <title>clojure 2.0.0.RC3</title>
+        <title>clojure 2.0.0.BUILD-SNAPSHOT</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
         <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8" />
@@ -17,40 +17,40 @@ function addJsClass(el) {
 
     <body class="body" onload="addJsClass();">
         <div id="navigation">
-            <ul>
-                <li>
-                    <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
-                        <a href="../guide/index.html" class="button">Table of contents</a>
-                        <div id="nav-summary-childs" style="display:none;">
-                            
-                            <div class="toc-item" style="margin-left:0"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
-                            
-                            <div class="toc-item" style="margin-left:0"><a href="#installation"><strong>2</strong><span>Installation</span></a></div>
-                            
-                            <div class="toc-item" style="margin-left:0"><a href="#definingFunctions"><strong>3</strong><span>Defining Functions</span></a></div>
-                            
-                            <div class="toc-item" style="margin-left:0"><a href="#invoking"><strong>4</strong><span>Invoking Functions</span></a></div>
-                            
-                            <div class="toc-item" style="margin-left:0"><a href="#namespaces"><strong>5</strong><span>Function Namespaces</span></a></div>
-                            
-                            <div class="toc-item" style="margin-left:0"><a href="#definingSpringBeans"><strong>6</strong><span>Spring Beans For Namespaces</span></a></div>
-                            
-                            <div class="toc-item" style="margin-left:0"><a href="#dynamicProperty"><strong>7</strong><span>Configuring The Default Dynamic Property Name</span></a></div>
-                            
-                        </div>
-                    </div>
-                </li>
-                <li class="separator selected">
-                    <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
-                </li>
-            </ul>
-        </div>
-        <div id="header">
-            <div class="images clearfix">
+            <div class="navTitle">
                 
-                
+                clojure
             </div>
-            <p></p>
+            <div class="navLinks">
+                <ul>
+                    <li>
+                        <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                            <a href="../guide/index.html" class="button">Table of contents</a>
+                            <div id="nav-summary-childs" style="display:none;">
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#installation"><strong>2</strong><span>Installation</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#definingFunctions"><strong>3</strong><span>Defining Functions</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#invoking"><strong>4</strong><span>Invoking Functions</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#namespaces"><strong>5</strong><span>Function Namespaces</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#definingSpringBeans"><strong>6</strong><span>Spring Beans For Namespaces</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#dynamicProperty"><strong>7</strong><span>Configuring The Default Dynamic Property Name</span></a></div>
+                                
+                            </div>
+                        </div>
+                    </li>
+                    <li class="separator selected">
+                        <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+                    </li>
+                </ul>
+
+            </div>
         </div>
 
 
@@ -62,9 +62,9 @@ function addJsClass(el) {
                         <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
                         <div class="project">
-                            <h1>clojure - Reference Documentation</h1>
+                            <h1>clojure</h1>
                             <p><strong>Authors:</strong> </p>
-                            <p><strong>Version:</strong> 2.0.0.RC3</p>
+                            <p><strong>Version:</strong> 2.0.0.BUILD-SNAPSHOT</p>
                             
                         </div>
 
@@ -98,11 +98,15 @@ function addJsClass(el) {
                         
 
 <h1 id="introduction">1 Introduction</h1>
+
+
 The Clojure plugin for Grails make sit very easy to invoke Clojure functions from Grails.
 
 
 
 <h1 id="installation">2 Installation</h1>
+
+
 Installing the plugin is done by expressing a runtime dependency from <code>build.gradle</code>.<p class="paragraph"/><div class="code"><pre>// ...<p class="paragraph"/>dependencies &#123;
     runtime 'org.grails.plugins:clojure:2.0.0.RC2'
 &#125;</pre></div>
@@ -110,6 +114,8 @@ Installing the plugin is done by expressing a runtime dependency from <code>buil
 
 
 <h1 id="definingFunctions">3 Defining Functions</h1>
+
+
 The plugin will discover all <code>.clj</code> folders defined under <code>src/main/clj/</code> and will
 make all of the functions defined in those source files available for invocation
 from Grails artefacts (controllers, services, etc...).<p class="paragraph"/><div class="code"><pre>;; src/main/clj/math.clj
@@ -119,12 +125,16 @@ from Grails artefacts (controllers, services, etc...).<p class="paragraph"/><div
 
 
 <h2 id="createFunctionScript">3.1 Using create-clojure-script</h2>
+
+
 The plugin provides a convenience command for creating Clojure source files.
 See the <a href="../ref/Command Line/create-clojure-script.html" class="commandLine">create-clojure-script</a> command documentation.
 
 
 
 <h1 id="invoking">4 Invoking Functions</h1>
+
+
 Clojure functions may be invocations from Grails artefacts look like normal
 method calls made on a property named <code>clj</code>.<p class="paragraph"/><div class="code"><pre>// grails&#45;app/controllers/demo/DemoController.groovy<p class="paragraph"/><span class="java&#45;keyword">package</span> demo<p class="paragraph"/>class DemoController &#123;<p class="paragraph"/>    def add(<span class="java&#45;object">int</span> x, <span class="java&#45;object">int</span> y) &#123;
         // <span class="java&#45;keyword">this</span> will invoke the add_numbers clojure function&#8230;
@@ -135,12 +145,16 @@ method calls made on a property named <code>clj</code>.<p class="paragraph"/><di
 
 
 <h1 id="namespaces">5 Function Namespaces</h1>
+
+
 Clojure allows functions to be defined in a namespace which allows multiple functions with the same
 name to be defined, provided they are in different namespaces.
 
 
 
 <h2 id="declaringFunctionNamespace">5.1 Declaring Function Namespace</h2>
+
+
 When defining Clojure functions you need to specify a namespace.<p class="paragraph"/><div class="code"><pre>;; src/clj/general.clj<p class="paragraph"/>;; Functions defined in <span class="java&#45;keyword">this</span> source file will be in the grails namespace
 (ns grails)<p class="paragraph"/>;; function declarions go here
 ;; ...</pre></div><p class="paragraph"/>
@@ -151,6 +165,8 @@ When defining Clojure functions you need to specify a namespace.<p class="paragr
 
 
 <h2 id="specifyingNamespace">5.2 Specifying A Namespace At Function Invocation Time</h2>
+
+
 By default the plugin will invoke clojure functions which are defined in the <code>grails</code> namespace.
 In order to invoke functions in any other namespace, the invocation needs to specify the name
 of the target namespace using Groovy's subscript operator.<p class="paragraph"/><div class="code"><pre>// grails&#45;app/controllers/demo/SomeController.groovy<p class="paragraph"/><span class="java&#45;keyword">package</span> demo<p class="paragraph"/>class SomeController &#123;<p class="paragraph"/>    def add(<span class="java&#45;object">int</span> x, <span class="java&#45;object">int</span> y) &#123;
@@ -164,6 +180,8 @@ of the target namespace using Groovy's subscript operator.<p class="paragraph"/>
 
 
 <h1 id="definingSpringBeans">6 Spring Beans For Namespaces</h1>
+
+
 The plugin can create Spring beans that provide access to Clojure functions.
 Each function namespace can be associated with a different Spring bean.<p class="paragraph"/>Function namespaces are associated with Spring bean names that are defined in
 <code>application.yml</code>.  Key value pairs under <code>grails.clojure.namespaceBeans</code>
@@ -192,6 +210,8 @@ which are associated with the <code>math</code> and <code>report</code> namespac
 
 
 <h1 id="dynamicProperty">7 Configuring The Default Dynamic Property Name</h1>
+
+
 By default the name of the dynamic property that is added to all
 Grails artefacts for accessing Clojure functions is called <code>clj</code>.<p class="paragraph"/><div class="code"><pre>// grails&#45;app/controllers/demo/DemoController.groovy<p class="paragraph"/><span class="java&#45;keyword">package</span> demo<p class="paragraph"/>class DemoController &#123;<p class="paragraph"/>    def add(<span class="java&#45;object">int</span> x, <span class="java&#45;object">int</span> y) &#123;
         // <span class="java&#45;keyword">this</span> will invoke the add_numbers clojure function&#8230;
